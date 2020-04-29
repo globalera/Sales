@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+TODO
+-->
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
+        default-menu-title="Opportunity" default-menu-index="1">
+
+    <parameter name="salesOpportunityId" required="true"/>
+
+    <transition name="updateOpportunity"><service-call name="update#SalesOpportunity"/>
+        <default-response url="."/></transition>
+    <!--
+    <transition name="edit"><path-parameter name="exampleId"/><default-response url=".">
+        <parameter name="exampleId" from="exampleId"/></default-response></transition>
+    <transition name="features"><path-parameter name="exampleId"/>
+        <default-response url="../EditExampleFeatureAppls">
+            <parameter name="exampleId" from="exampleId"/>
+            <parameter name="test" value="foo"/>
+        </default-response>
+    </transition>
+    -->
+
+    <actions>
+        <entity-find-one entity-name="mantle.sales.opportunity.SalesOpportunity" value-field="opportunity"/>
+        <log message="EditExample exampleId [${exampleId}] example [${example}]"/>
+    </actions>
+    <widgets><container-row><row-col lg="6">
+        <!--
+        <section name="ExampleMenu" condition="example"><widgets>
+            <label text="Test/Example Links:"/>
+            <link url="edit" text="Edit" link-type="anchor"/>
+            <link url="features" text="Features" link-type="anchor"/>
+            <link url="/apps/example/Example/EditExample/features/${exampleId}" text="Features - Path Parameter" link-type="anchor"/>
+        </widgets></section>
+        -->
+
+        <form-single name="UpdateOpportunity" transition="updateOpportunity" map="opportunity">
+            <auto-fields-entity entity-name="SalesOpportunity" field-type="edit"/>
+            <field name="accountPartyId"><default-field title="Account"><drop-down allow-empty="true">
+                <dynamic-options transition="searchPartyList" server-search="true" min-length="2" parameter-map="[roleTypeId:'Account']"/>
+            </drop-down></default-field></field>
+            <field name="submitButton"><default-field title="Update"><submit/></default-field></field>
+        </form-single>
+    </row-col><row-col lg="6">
+        <label type="h1" text="Include related lists here"/>
+    </row-col></container-row></widgets>
+</screen>

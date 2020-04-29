@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+TODO
+-->
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
+        default-menu-title="Contacts" default-menu-index="3" menu-image="glyphicon glyphicon-check" menu-image-type="icon">
+    <subscreens default-item="FindRequest">
+        <subscreens-item name="FindRequest" menu-include="false"
+                location="component://SimpleScreens/screen/SimpleScreens/Request/FindRequest.xml"/>
+        <subscreens-item name="EditRequest" menu-index="1"
+                location="component://SimpleScreens/screen/SimpleScreens/Request/EditRequest.xml"/>
+    </subscreens>
+    <widgets><subscreens-panel id="task-panel" type="tab"/></widgets>
+</screen>

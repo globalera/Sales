@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+TODO
+-->
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
+        default-menu-include="false">
+
+    <transition name="findOpportunity"><default-response url="."/></transition>
+
+    <transition name="createOpportunity"><service-call name="create#SalesOpportunity" in-map="context"/>
+        <default-response url="."/></transition>
+    <transition name="editOpportunity"><default-response url="../EditOpportunity"/></transition>
+
+    <pre-actions><set field="html_title" value="Find Opportunities"/></pre-actions>
+    
+    <actions>
+        <entity-find entity-name="mantle.sales.opportunity.SalesOpportunity" list="myOpportunityList">
+            <!--<econditions combine="or">
+                <econdition field-name="visibilityEnumId" operator="in" value="WevGeneral,WevAllUsers"/>
+                <econditions><date-filter/><econdition field-name="partyId" from="ec.user.userAccount.partyId"/></econditions>
+            </econditions>
+            <econdition field-name="workEffortTypeEnumId" value="WetProject"/> -->
+            <order-by field-name="salesOpportunityId"/>
+        </entity-find>
+        <set field="myOpportunityIds" from="myOpportunityList.salesOpportunityId"/>
+    </actions>
+    <widgets>
+        <!-- for future use with saved task filters: <container><label text="${groovy.json.JsonOutput.toJson(ec.web.requestParameters)}"/></container> -->
+        <container>
+            <container-dialog id="FindOpportunityDialog" button-text="Find Options" width="800">
+                <form-single name="FindOpportunity" transition=".">
+                    <field name="queryString" from="ec.web.parameters.queryString">
+                        <default-field title="Text Search"><text-line size="70"/></default-field></field>
+                    <field name="salesOpportunityId"><default-field title="Opportunity"><drop-down allow-empty="true">
+                        <list-options list="myOpportunityList" key="${salesOpportunityId}" text="SalesOpportunityNameTemplate"/>
+                    </drop-down></default-field></field>
+
+                    <!-- TODO: add user filter -->
+                    <field name="searchButton"><default-field title="Find Opportunities"><submit/></default-field></field>
+                </form-single>
+            </container-dialog>
+            <container-dialog id="NewOpportunityContainer" button-text="New Opportunity">
+                <form-single name="NewOpportunityForm" transition="createOpportunity">
+                    <field name="opportunityName"><default-field title="Opportunity Name"><text-line/></default-field></field>
+                    <field name="description"><default-field title="Description"><text-area rows="10" cols="60"/></default-field></field>
+                    <field name="submitButton"><default-field title="Create"><submit/></default-field></field>
+                </form-single>
+            </container-dialog>
+            <link url="${sri.getScreenUrlInstance().getUrlWithParams()}" text="Current Search Link" url-type="plain" link-type="anchor"/>
+        </container>
+        <container>
+            <form-single name="SearchOptions" transition="findOpportunity">
+                <field name="queryString" from="ec.web.parameters.queryString"><default-field title=""><text-line size="40"/></default-field></field>
+                <field name="submitButton"><default-field title="Text Search"><submit/></default-field></field>
+                <field-layout><field-row-big><field-ref name="queryString"/><field-ref name="submitButton"/></field-row-big></field-layout>
+            </form-single>
+        </container>
+
+        <form-list name="ListOpportunity" list="myOpportunityList" skip-form="true">
+
+            <field name="salesOpportunityId">
+                <header-field title="ID" show-order-by="true"/>
+                <default-field><link text="${salesOpportunityId}" url="editOpportunity" link-type="anchor"/></default-field>
+            </field>
+            <field name="opportunityName">
+                <header-field title="Name" show-order-by="case-insensitive"/>
+                <default-field><link text="${opportunityName}" url="editOpportunity" link-type="anchor"/></default-field>
+            </field>
+            <field name="estimatedAmount">
+                <header-field title="Amount" show-order-by="case-insensitive"/>
+                <default-field><link text="${estimatedAmount}" url="editOpportunity" link-type="anchor"/></default-field>
+            </field>
+            <field name="estimatedProbability">
+                <header-field title="Probability" show-order-by="case-insensitive"/>
+                <default-field><link text="${estimatedProbability}" url="editOpportunity" link-type="anchor"/></default-field>
+            </field>
+            <field name="estimatedCloseDate">
+                <header-field title="Close Date" show-order-by="case-insensitive"/>
+                <default-field><link text="${estimatedCloseDate}" url="editOpportunity" link-type="anchor"/></default-field>
+            </field>
+        </form-list>
+    </widgets>
+</screen>

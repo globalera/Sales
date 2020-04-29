@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO -->
+<entity-facade-xml type="seed-initial">
+    <!-- Sales App -->
+    <moqui.security.ArtifactGroup artifactGroupId="SALES" description="Sales (via root screen)"/>
+    <moqui.security.ArtifactGroupMember artifactGroupId="SALES" artifactName="component://sales/screen/SalesApp.xml"
+            artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y"/>
+    <!-- authz/permission for ADMIN users -->
+    <moqui.security.ArtifactAuthz artifactAuthzId="SALES" userGroupId="ADMIN" artifactGroupId="SALES"
+            authzTypeEnumId="AUTHZT_ALWAYS" authzActionEnumId="AUTHZA_ALL"/>
+</entity-facade-xml>

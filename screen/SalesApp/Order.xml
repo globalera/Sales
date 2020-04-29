@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+TODO
+-->
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
+        default-menu-title="Orders" default-menu-index="6" menu-image="glyphicon glyphicon-check" menu-image-type="icon">
+
+<!--    <subscreens default-item="FindProject"/>
+
+    <widgets>
+        <subscreens-active/>
+    </widgets>
+-->
+</screen>

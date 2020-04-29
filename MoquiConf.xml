@@ -4,7 +4,7 @@
     <screen-facade>
         <screen location="component://webroot/screen/webroot/apps.xml">
             <subscreens-item name="sales" menu-title="Sales" menu-index="7"
-                             location="component://sales/screen/Sales.xml"/>
+                location="component://sales/screen/SalesApp.xml"/>
         </screen>
     </screen-facade>
 </moqui-conf>
