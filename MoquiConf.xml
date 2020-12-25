@@ -3,8 +3,8 @@
 <moqui-conf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/moqui-conf-2.1.xsd">
     <screen-facade>
         <screen location="component://webroot/screen/webroot/apps.xml">
-            <subscreens-item name="sales" menu-title="Sales" menu-index="7"
-                location="component://sales/screen/SalesApp.xml"/>
+            <subscreens-item name="Sales" menu-title="Sales" menu-index="7"
+                location="component://Sales/screen/SalesApp.xml"/>
         </screen>
     </screen-facade>
 </moqui-conf>

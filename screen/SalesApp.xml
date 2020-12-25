@@ -5,7 +5,7 @@ TODO
 <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
         default-menu-title="Sales" menu-image="glyphicon glyphicon-check" menu-image-type="icon">
     <always-actions>
-        <set field="appRoot" value="sales"/>
+        <set field="appRoot" value="Sales"/>
 
         <set field="searchIndexName" value="mantle"/>
         <set field="searchLinkSets" value="hm"/>
