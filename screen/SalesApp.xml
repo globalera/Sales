@@ -4,21 +4,27 @@ TODO
 -->
 <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
         default-menu-title="Sales" menu-image="glyphicon glyphicon-check" menu-image-type="icon">
-    <always-actions>
-        <set field="appRoot" value="Sales"/>
-
-        <set field="searchIndexName" value="mantle"/>
-        <set field="searchLinkSets" value="hm"/>
-        <set field="searchTaskDocType" value="MantleTask"/>
-        <set field="searchPartyDocType" value="MantleParty"/>
-    </always-actions>
-    <subscreens default-item="dashboard" always-use-full-path="true">
-        <subscreens-item name="Search" location="component://SimpleScreens/screen/SimpleScreens/Search.xml" menu-index="7"/>
-        <subscreens-item name="wiki" location="component://SimpleScreens/screen/SimpleScreens/Wiki/wiki.xml" menu-include="false"/>
-        <subscreens-item name="EditWikiPage" location="component://SimpleScreens/screen/SimpleScreens/Wiki/EditWikiPage.xml" menu-include="false"/>
-        <subscreens-item name="WikiCompare" location="component://SimpleScreens/screen/SimpleScreens/Wiki/WikiCompare.xml" menu-include="false"/>
+       <always-actions>
+          <set field="appRoot" value="Sales"/>
+        <!-- Not sure if any of these are required or what they are for
+          <set field="searchIndexName" value="mantle"/>
+          <set field="searchLinkSets" value="hm"/>
+          <set field="searchTaskDocType" value="MantleTask"/>
+          <set field="searchPartyDocType" value="MantleParty"/>
+          -->
+      </always-actions>
+    <subscreens default-item="Opportunity" always-use-full-path="true">
+        <!-- Bring dashboard in later
+            <subscreens-item name="Account" location="component://Sales/screen/SalesApp/Account.xml" menu-index="1"/>
+            <subscreens-item name="Search" location="component://SimpleScreens/screen/SimpleScreens/Search.xml" menu-index="7"/>
+            <subscreens-item name="wiki" location="component://SimpleScreens/screen/SimpleScreens/Wiki/wiki.xml" menu-include="false"/>
+            <subscreens-item name="EditWikiPage" location="component://SimpleScreens/screen/SimpleScreens/Wiki/EditWikiPage.xml" menu-include="false"/>
+            <subscreens-item name="WikiCompare" location="component://SimpleScreens/screen/SimpleScreens/Wiki/WikiCompare.xml" menu-include="false"/>
+        -->
     </subscreens>
+    <!-- TODO VC: This section must be here or screen will not be found. Why? -->
     <widgets>
         <subscreens-panel id="SalesPanel" type="popup" title="Sales"/>
     </widgets>
+
 </screen>

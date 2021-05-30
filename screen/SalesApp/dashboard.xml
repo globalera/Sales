@@ -3,7 +3,7 @@
 TODO
 -->
 <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
-        default-menu-title="Dashboard" default-menu-index="1" menu-image="glyphicon glyphicon-dashboard" menu-image-type="icon">
+        default-menu-title="Dashboard" default-menu-include="false" default-menu-index="1" menu-image="glyphicon glyphicon-dashboard" menu-image-type="icon">
 
     <widgets>
         <container-row><row-col md="2">

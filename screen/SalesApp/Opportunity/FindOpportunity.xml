@@ -5,28 +5,29 @@ TODO
 <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
         default-menu-include="false">
-
     <transition name="findOpportunity"><default-response url="."/></transition>
-
     <transition name="createOpportunity"><service-call name="create#SalesOpportunity" in-map="context"/>
         <default-response url="."/></transition>
     <transition name="editOpportunity"><default-response url="../EditOpportunity"/></transition>
-
+    <transition name="editCustomer"><default-response location="component://SimpleScreens/Customer/EditCustomer.xml"/></transition>
+    <!--
+    <transition-include name="editCustomer"><default-response location="component://SimpleScreens/Customer/EditCustomer.xml"/></transition-include>
+    -->
     <pre-actions><set field="html_title" value="Find Opportunities"/></pre-actions>
-    
     <actions>
         <entity-find entity-name="mantle.sales.opportunity.SalesOpportunity" list="myOpportunityList">
-            <!--<econditions combine="or">
+            <!--
+            <econditions combine="or">
                 <econdition field-name="visibilityEnumId" operator="in" value="WevGeneral,WevAllUsers"/>
                 <econditions><date-filter/><econdition field-name="partyId" from="ec.user.userAccount.partyId"/></econditions>
             </econditions>
-            <econdition field-name="workEffortTypeEnumId" value="WetProject"/> -->
+            <econdition field-name="workEffortTypeEnumId" value="WetProject"/>
+            -->
             <order-by field-name="salesOpportunityId"/>
         </entity-find>
         <set field="myOpportunityIds" from="myOpportunityList.salesOpportunityId"/>
     </actions>
     <widgets>
-        <!-- for future use with saved task filters: <container><label text="${groovy.json.JsonOutput.toJson(ec.web.requestParameters)}"/></container> -->
         <container>
             <container-dialog id="FindOpportunityDialog" button-text="Find Options" width="800">
                 <form-single name="FindOpportunity" transition=".">
@@ -58,10 +59,22 @@ TODO
         </container>
 
         <form-list name="ListOpportunity" list="myOpportunityList" skip-form="true">
+            <!--
+            <auto-fields-entity entity-name="SalesOpportunity" field-type="display"/>
+            <field name="accountPartyId">
+                <header-field title="Account" show-order-by="true"/>
+                <default-field>
+                    <link url="editOpportunity" entity-name="mantle.party.PartyDetail" text="PartyNameTemplate"
+                      link-type="anchor" parameter-map="[accountPartyId:accountPartyId]"/>
+                </default-field>
+            </field>
+            -->
 
-            <field name="salesOpportunityId">
-                <header-field title="ID" show-order-by="true"/>
-                <default-field><link text="${salesOpportunityId}" url="editOpportunity" link-type="anchor"/></default-field>
+            <field name="accountPartyId">
+                <header-field title="Account" show-order-by="true"/>
+                <default-field> <!-- TODO: fix URL to use editAccount once available -->
+                    <link entity-name="mantle.party.PartyDetail" text="PartyNameOnlyTemplate" url="editCustomer" link-type="anchor"/>
+                </default-field>
             </field>
             <field name="opportunityName">
                 <header-field title="Name" show-order-by="case-insensitive"/>
@@ -79,6 +92,7 @@ TODO
                 <header-field title="Close Date" show-order-by="case-insensitive"/>
                 <default-field><link text="${estimatedCloseDate}" url="editOpportunity" link-type="anchor"/></default-field>
             </field>
+            -->
         </form-list>
     </widgets>
 </screen>

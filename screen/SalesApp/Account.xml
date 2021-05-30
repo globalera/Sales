@@ -3,12 +3,10 @@
 TODO
 -->
 <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
-        default-menu-title="Accounts" default-menu-index="2" menu-image="glyphicon glyphicon-check" menu-image-type="icon">
-
-<!--    <subscreens default-item="FindProject"/>
-
-    <widgets>
-        <subscreens-active/>
-    </widgets>
--->
+        default-menu-title="Account" default-menu-index="3" menu-image="glyphicon glyphicon-check" menu-image-type="icon">
+    <subscreens default-item="FindCustomer">
+        <subscreens-item name="FindCustomer" menu-include="false"
+                         location="component://SimpleScreens/screen/SimpleScreens/Customer/FindCustomer.xml"/>
+    </subscreens>
+    <widgets><subscreens-panel id="CustomerPanel" type="tab"/></widgets>
 </screen>
